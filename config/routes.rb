@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   get :etag, to: 'caching_strategies#etag_caching'
 
-  resources :posts, only: %i[index]
+  resources :posts, only: %i[index show]
 end

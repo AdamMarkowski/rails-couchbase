@@ -3,16 +3,16 @@ Rate.delete_all
 Post.delete_all
 Author.delete_all
 
-10.times do |i|
+25.times do |i|
   ActiveRecord::Base.transaction do
-    puts "#{i+1}/10"
+    puts "#{i+1}/25"
     author = Author.create(
       first_name: Faker::Name.first_name,
       second_name: Faker::Name.last_name
     )
     post = Post.create(
       title: Faker::Book.title,
-      body: Faker::Lorem.paragraphs(4).join("\n"),
+      body: Faker::Lorem.paragraphs(5).join('<br />'),
       author: author
     )
 

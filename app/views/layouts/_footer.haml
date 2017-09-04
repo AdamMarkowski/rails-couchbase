@@ -1,0 +1,19 @@
+.row.pb20.ml20.mr20
+  .col-6
+    .card
+      .card-body
+        %h5.card-title Najpopularniejsze posty
+        %ul
+          - Post.most_popular.each do |post|
+            %li= link_to post, post
+  .col-6
+    .card
+      .card-body
+        %h5.card-title Najlepiej oceniane posty
+        %ul
+          - Post.most_popular.each do |post|
+            %li= link_to post, post
+
+
+%footer.blog-footer
+  %p All rights reserved
