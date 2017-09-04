@@ -1,0 +1,1 @@
+alert('Dziękujemy za ocenę!');

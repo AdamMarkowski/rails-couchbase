@@ -1,7 +1,16 @@
 .blog-post
-  %h2.blog-post-title= link_to post.title, post
+  %h2.blog-post-title
+    = link_to post.title, post
+    
   %p.blog-post-meta
     = post.created_at.strftime('%Y-%m-%d %H:%M')
     by
     = post.pretty_author
+
+  .wrapper.mb60
+    .inline.pull-left
+      Oceniono na:
+      = post.rating.round(2)
+    .inline.pull-right
+      = "Przeczytano już #{post.visits_count} razy"
   = post.body.html_safe

@@ -1,1 +1,7 @@
 = render partial: 'post', locals: { post: @post }
+
+.right.mb60
+  = form_tag(add_rate_post_path(@post), method: "get", remote: true) do
+    Oceń artykuł:
+    = select_tag :rate, options_for_select([1,2,3,4,5])
+    = submit_tag 'Wyślij', class: 'btn btn-outline-success btn-sm'

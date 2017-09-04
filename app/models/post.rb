@@ -10,7 +10,7 @@ class Post < ApplicationRecord
     "#{author.first_name} #{author.second_name}"
   end
 
-  def visits
+  def visits_count
     visits.count
   end
 
