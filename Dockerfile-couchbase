@@ -1,0 +1,10 @@
+# FROM couchbase:latest
+FROM arungupta/couchbase
+
+CMD ["sudo usermod -a -G docker $USER"]
+COPY configure-node.sh /
+RUN ["chmod", "+x", "/configure-node.sh"]
+RUN ["chmod", "777", "/configure-node.sh"]
+
+#HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost:8091/pools || exit 1
+CMD ["/configure-node.sh"]
