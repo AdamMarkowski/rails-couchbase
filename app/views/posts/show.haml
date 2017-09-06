@@ -5,3 +5,5 @@
     Oceń artykuł:
     = select_tag :rate, options_for_select([1,2,3,4,5])
     = submit_tag 'Wyślij', class: 'btn btn-outline-success btn-sm'
+
+= render partial: 'comments', locals: { comments: @post.comments }

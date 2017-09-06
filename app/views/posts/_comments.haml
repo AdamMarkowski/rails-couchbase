@@ -1,0 +1,27 @@
+.container
+  .row
+    - comments.each do |comment|
+      .col-12
+        .panel.panel-white.post.mb20
+          .post-heading
+            .pull-left.image
+              %img.img-circle.avatar{:alt => "user profile image", :src => "http://bootdey.com/img/Content/user_1.jpg"}/
+            .pull-left.meta.w70p
+              .title.h5
+                %b= comment.author
+              %h6.pull-right= comment.created_at
+          .post-description
+            %p= comment.body
+
+  .row
+    .m20
+      %h2 Dodaj komentarz:
+      = form_tag(add_comment_post_path(@post), method: "get", remote: true) do
+        .field
+          = label_tag :author, 'Autor: '
+          = text_field_tag :author
+        .field
+          = label_tag :body, 'Komentarz: '
+          = text_area_tag :body
+        .field
+          = submit_tag 'Wyślij', class: 'btn btn-outline-success btn-sm'

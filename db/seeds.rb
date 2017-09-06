@@ -16,6 +16,12 @@ Author.delete_all
       author: author
     )
 
+    Comment.create(
+      author: 'Marek',
+      body: 'Świetny artykuł!',
+      post: post
+    )
+
     Random.rand(10...1000).times do
       Rate.create(
         value: Random.rand(1..5),

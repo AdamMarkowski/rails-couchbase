@@ -15,4 +15,13 @@ class PostsController < ApplicationController
     render layout: false
   end
 
+  def add_comment
+    @post = Post.find(params[:id])
+    @post.comments.create(
+      author: params[:author],
+      body: params[:body]
+    )
+    render layout: false
+  end
+
 end

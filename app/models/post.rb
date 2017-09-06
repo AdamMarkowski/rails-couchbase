@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   belongs_to :author
   has_many :visits
   has_many :rates
+  has_many :comments
 
   def pretty_author
     "#{author.first_name} #{author.second_name}"
