@@ -1,0 +1,6 @@
+.card
+  .card-body
+    %h5.card-title Najpopularniejsze posty
+    %ul
+      - Post.most_popular.each do |post|
+        %li= link_to post, post

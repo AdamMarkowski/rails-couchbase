@@ -1,18 +1,8 @@
 .row.pb20.ml20.mr20
   .col-6
-    .card
-      .card-body
-        %h5.card-title Najpopularniejsze posty
-        %ul
-          - Post.most_popular.each do |post|
-            %li= link_to post, post
+    != Cache.fetch("most_popular_section", ttl: 20) { render partial: 'most_popular_section' }
   .col-6
-    .card
-      .card-body
-        %h5.card-title Najlepiej oceniane posty
-        %ul
-          - Post.most_popular.each do |post|
-            %li= link_to post, post
+    != Cache.fetch("best_rated_section", ttl: 20) { render partial: 'best_rated_section' }
 
 
 %footer.blog-footer

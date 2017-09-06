@@ -7,8 +7,13 @@ class Post < ApplicationRecord
   has_many :rates
   has_many :comments
 
+  after_update :clear_cache
+  after_create :clear_pagination_cache
+
   def pretty_author
-    "#{author.first_name} #{author.second_name}"
+    Cache.fetch("post:#{id}:pretty_author") do
+      "#{author.first_name} #{author.second_name}"
+    end
   end
 
   def visits_count
@@ -41,6 +46,17 @@ class Post < ApplicationRecord
 
   def to_s
     title
+  end
+
+  def clear_cache
+    Cache.remove("post:#{id}")
+  end
+
+  def clear_pagination_cache
+    pages_count = self.class.count / 10
+    (0..pages_count).to_a.each do |i|
+      Cache.remove("posts:page:#{i}")
+    end
   end
 
 end

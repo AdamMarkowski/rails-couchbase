@@ -1,11 +1,19 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all.page params[:page]
+    @posts = Cache.fetch("posts:page:#{params[:page]}", ttl: 1.hour) do
+      posts = Post.all.page(params[:page])
+      Kaminari::PaginatableArray.new(
+        posts.to_a,
+        limit: posts.limit_value,
+        offset: posts.offset_value,
+        total_count: posts.total_count
+      )
+    end
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Cache.fetch("post:#{params[:id]}") { Post.find(params[:id]) }
     @post.visits.create(ip_addr: request.remote_ip)
   end
 
