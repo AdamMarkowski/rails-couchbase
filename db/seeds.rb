@@ -1,8 +1,8 @@
-Visit.delete_all
-Rate.delete_all
-Comment.delete_all
-Post.delete_all
-Author.delete_all
+Visit.destroy_all
+Rate.destroy_all
+Comment.destroy_all
+Post.destroy_all
+Author.destroy_all
 
 25.times do |i|
   ActiveRecord::Base.transaction do
@@ -39,7 +39,8 @@ Author.delete_all
   end
 end
 
-About.create!(
+StaticPage.create!(
+  page: 'about',
   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum ipsum ante, a feugiat turpis ullamcorper vel. Praesent at dolor ligula. Quisque molestie urna quam, ac aliquam est dapibus eget. Phasellus et commodo lacus. Aliquam dictum sagittis turpis, id laoreet turpis rhoncus in. Aliquam sodales urna vel cursus tristique. Nam tempor, mauris vitae suscipit malesuada, sapien mauris convallis justo, a luctus lorem metus quis eros.
   Vestibulum non tristique erat, nec tincidunt tellus. Suspendisse vehicula lacus non suscipit aliquet. Sed id malesuada purus, eu sollicitudin massa. Sed interdum urna dolor, aliquam pulvinar massa feugiat sit amet. In ullamcorper diam magna. Suspendisse ornare leo eu magna facilisis commodo. Praesent non dolor vel felis ullamcorper maximus id quis massa. Sed fringilla ligula vitae sem bibendum pretium. Vivamus viverra elit at interdum mollis.
   Curabitur et ipsum id mi cursus mollis a eu lectus. Vestibulum pulvinar est id odio convallis, ac malesuada massa tempus. Pellentesque at dui non nisi consectetur tincidunt id mattis risus. Nulla ultricies sodales hendrerit. Nulla interdum diam sit amet venenatis aliquam. Nam vitae porta justo. Fusce vulputate suscipit nibh in congue. Suspendisse potenti.

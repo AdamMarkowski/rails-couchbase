@@ -15,12 +15,6 @@ ActiveRecord::Schema.define(version: 20170906201640) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "abouts", force: :cascade do |t|
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
     t.string "second_name"
@@ -52,6 +46,13 @@ ActiveRecord::Schema.define(version: 20170906201640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_rates_on_post_id"
+  end
+
+  create_table "static_pages", force: :cascade do |t|
+    t.string "page"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "visits", force: :cascade do |t|
