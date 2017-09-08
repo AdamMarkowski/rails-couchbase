@@ -1,7 +1,6 @@
 require 'libcouchbase'
 
 class Cache
-
   class << self
 
     def fetch(key, params = {})
@@ -37,10 +36,6 @@ class Cache
       connector.delete(key)
     end
 
-    def flush
-      connector.flush
-    end
-
     private
 
     def connector
@@ -54,5 +49,4 @@ class Cache
     end
 
    end
-
 end
