@@ -6,7 +6,5 @@ Rails.application.routes.draw do
     get :add_comment, on: :member
   end
 
-  resources :static, only: %i[] do
-    get :about, on: :collection
-  end
+  get '/static/:page', to: 'static#page', as: :static
 end

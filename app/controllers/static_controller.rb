@@ -1,8 +1,8 @@
 class StaticController < ApplicationController
 
-  def about
-    @about = StaticPage.find_by_page('about')
-    fresh_when(etag: @about, public: true)
+  def page
+    @page = StaticPage.find_by_page(params[:page])
+    fresh_when(etag: @page, public: true)
   end
 
 end
