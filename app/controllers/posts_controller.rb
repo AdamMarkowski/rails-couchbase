@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Cache.fetch("posts:page:#{params[:page]}", ttl: 1.hour) do
-      posts = Post.all.page(params[:page])
+    @posts = Cache.fetch("posts:page:#{params[:page]}") do
+      posts = Post.preload(:author).all.page(params[:page])
       Kaminari::PaginatableArray.new(
         posts.to_a,
         limit: posts.limit_value,

@@ -12,6 +12,9 @@ class Post < ApplicationRecord
 
   default_scope -> { order('updated_at DESC') }
 
+  after_create :remove_pagination_cache
+  after_destroy :remove_pagination_cache
+
   def pretty_author
     Cache.fetch("post:#{id}:pretty_author") do
       "#{author.first_name} #{author.last_name}"
@@ -58,6 +61,18 @@ class Post < ApplicationRecord
     pages_count = self.class.count / 10
     (0..pages_count).to_a.each do |i|
       Cache.remove("posts:page:#{i}")
+    end
+  end
+
+  private
+
+  def pages_count
+    (self.class.count / 10.to_f).ceil
+  end
+
+  def remove_pagination_cache
+    (0..pages_count).to_a.each do |page|
+      Cache.remove("posts:page:#{page}")
     end
   end
 

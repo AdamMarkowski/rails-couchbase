@@ -14,8 +14,6 @@ class Cache
       end
 
       obj
-
-      yield
     end
 
     def set(key, value, params = {})

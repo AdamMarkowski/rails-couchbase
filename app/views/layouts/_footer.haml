@@ -1,9 +1,9 @@
 - if params[:controller] == 'posts' && params[:action] == 'index'
   .row.pb20.ml20.mr20
     .col-6
-      != Cache.fetch("most_popular_section", ttl: 20) { render partial: 'most_popular_section' }
+      != Cache.fetch("most_popular_section", ttl: 1.hour.to_i) { render partial: 'most_popular_section' }
     .col-6
-      != Cache.fetch("best_rated_section", ttl: 20) { render partial: 'best_rated_section' }
+      != Cache.fetch("best_rated_section", ttl: 1.hour.to_i) { render partial: 'best_rated_section' }
 
 
 %footer.blog-footer

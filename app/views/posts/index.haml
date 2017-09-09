@@ -1,4 +1,5 @@
 - @posts.each do |post|
-  != Cache.fetch("post:#{post.id}:view", ttl: 30) { render partial: 'post', locals: { post: post } }
+  -# != Cache.fetch("post:#{post.id}:view", ttl: 30) { render partial: 'post', locals: { post: post } }
+  = render partial: 'post', locals: { post: post } 
 
 =paginate @posts
