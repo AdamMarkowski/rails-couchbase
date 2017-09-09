@@ -10,6 +10,8 @@ class Post < ApplicationRecord
   after_update :clear_cache
   after_create :clear_pagination_cache
 
+  default_scope -> { order('updated_at DESC') }
+
   def pretty_author
     Cache.fetch("post:#{id}:pretty_author") do
       "#{author.first_name} #{author.second_name}"

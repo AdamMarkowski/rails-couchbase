@@ -2,10 +2,12 @@
   .sidebar-module.sidebar-module-inset
     %h4 O nas
     %p
-      Jesteśmy naprawdę spoko.
-      = link_to 'Przeczytaj o nas', static_path(page: 'about')
+      The IT Blog to siedmiu autorów piszących na tematy związane z szeroko pojętą branżą IT. Opisujemy, radzimy, recenzujemy narzędzia – wszystko, aby każdego dnia być coraz lepszym.
+      .right= link_to 'Więcej o nas', static_path(page: 'about')
   %sidebar-module
-    %h4 Ja w internecie
+    %h4 O nas w internecie
     %ol.list-unstyled
-      %li <a href="https://github.com/AdamMarkowski">GitHub</a>
-      %li <a href="https://www.facebook.com/FlowReality">Facebook</a>
+      %li
+        %a{href: "https://github.com/AdamMarkowski"} GitHub
+      %li
+        %a{href: "https://www.facebook.com/FlowReality"} Facebook

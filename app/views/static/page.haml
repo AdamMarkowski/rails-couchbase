@@ -1,1 +1,1 @@
-= @page.try(:content)
+= @page.try(:content).gsub("\n", '<br />').html_safe

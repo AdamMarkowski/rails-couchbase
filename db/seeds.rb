@@ -1,18 +1,40 @@
-Visit.destroy_all
-Rate.destroy_all
-Comment.destroy_all
-Post.destroy_all
-Author.destroy_all
+puts 'Deleting'
+Visit.delete_all
+Rate.delete_all
+Comment.delete_all
+Post.delete_all
+Author.delete_all
+StaticPage.delete_all
 
-25.times do |i|
+puts 'Creating'
+
+titles = [
+  "Wykorzystanie Couchbase'a w aplikacja internetowych",
+  'Buforowanie HTTP',
+  'Buforowanie fragmentów',
+  'Buforowanie widoków',
+  'Buforowanie obiektów',
+  'Memcached',
+  'Consistent hashing',
+  'Omówienie Couchbase’a',
+  'Główne cechy bazy Couchbase',
+  'Wielowymiarowe skalowanie',
+  'Przykładowa realizacja Fragment Cache',
+  'Przykładowa realizacja Object Cache',
+  'Język zapytań N1QL',
+  'Indeksy Pełnotekstowe',
+  'Wsparcie dla analizy danych'
+]
+
+15.times do |i|
   ActiveRecord::Base.transaction do
-    puts "#{i+1}/25"
+    puts "#{i+1}/15"
     author = Author.create(
       first_name: Faker::Name.first_name,
       second_name: Faker::Name.last_name
     )
     post = Post.create(
-      title: Faker::Book.title,
+      title: titles.shift,
       body: Faker::Lorem.paragraphs(5).join('<br />'),
       author: author
     )
@@ -39,13 +61,30 @@ Author.destroy_all
   end
 end
 
+content = %{
+The IT Blog to siedmiu autorów piszących na tematy związane z szeroko pojętą branżą IT. Opisujemy, radzimy, recenzujemy narzędzia – wszystko, aby każdego dnia być coraz lepszym.
+Zespół tworzą:
+Michał Proc (redaktor naczelny)
+Paweł Łukaszenko (publicysta)
+Cezary Nester (publicysta)
+Artiem Wojcieszak (publicystka)
+Wojtek Dros (publicysta)
+Paulina Wójcik (publicystka)
+Agnieszka Mamak (publicystka)
+}
+
 StaticPage.create!(
   page: 'about',
-  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum ipsum ante, a feugiat turpis ullamcorper vel. Praesent at dolor ligula. Quisque molestie urna quam, ac aliquam est dapibus eget. Phasellus et commodo lacus. Aliquam dictum sagittis turpis, id laoreet turpis rhoncus in. Aliquam sodales urna vel cursus tristique. Nam tempor, mauris vitae suscipit malesuada, sapien mauris convallis justo, a luctus lorem metus quis eros.
-  Vestibulum non tristique erat, nec tincidunt tellus. Suspendisse vehicula lacus non suscipit aliquet. Sed id malesuada purus, eu sollicitudin massa. Sed interdum urna dolor, aliquam pulvinar massa feugiat sit amet. In ullamcorper diam magna. Suspendisse ornare leo eu magna facilisis commodo. Praesent non dolor vel felis ullamcorper maximus id quis massa. Sed fringilla ligula vitae sem bibendum pretium. Vivamus viverra elit at interdum mollis.
-  Curabitur et ipsum id mi cursus mollis a eu lectus. Vestibulum pulvinar est id odio convallis, ac malesuada massa tempus. Pellentesque at dui non nisi consectetur tincidunt id mattis risus. Nulla ultricies sodales hendrerit. Nulla interdum diam sit amet venenatis aliquam. Nam vitae porta justo. Fusce vulputate suscipit nibh in congue. Suspendisse potenti.
-  Aliquam volutpat in magna consectetur rhoncus. Nunc eleifend interdum ligula in ornare. Proin varius elit eu nulla efficitur, in efficitur odio aliquet. Donec eros arcu, vulputate sit amet viverra id, consectetur sit amet urna. Sed tempor ante vel elit faucibus sollicitudin. Vestibulum justo mi, fringilla non elit sed, cursus lobortis purus. Aliquam in lobortis nunc, et elementum arcu. Nam in accumsan lacus. Nunc hendrerit pretium sem, quis gravida magna accumsan sed. Integer sollicitudin lacinia sapien non interdum. Sed vitae sodales quam, id ultrices augue. Morbi egestas lectus et volutpat maximus. Sed tempus nunc et enim fermentum sollicitudin.
-  Quisque at mattis leo. Praesent ut feugiat arcu. Morbi iaculis porttitor arcu sit amet molestie. Mauris at malesuada sem, a rhoncus augue. Nullam interdum, quam sed scelerisque pharetra, enim purus finibus arcu, vel euismod lectus nunc sit amet nibh. Vestibulum lacinia urna non tincidunt fermentum. Cras nec efficitur nisl. Fusce elementum ante vel urna maximus bibendum.'
+  content: content
 )
+
+title = "Wykorzystanie Couchbase'a w aplikacja internetowych"
+body = %{
+  Zasoby obliczeniowe oraz pamięć są ograniczeniem współczesnych aplikacji webowych. W niektórych przypadkach możemy odnieść dużą korzyść efektywnie wykorzystując dobre strategie cache'owania, zmniejszając zużycie pamięci oraz przyśpieszając aplikację.
+  Cache'owanie jest powszechnie stosowaną techniką optymalizacji, ponieważ przechowuje ostatnio użyte dane w pamięci, przewidując że będą one potrzebne w przyszłości. Może zostać zaimplementowana na wiele sposobów, włączając rozważne użycie wzorów projektowych.
+}
+
+Post.last.update_attributes(title: title, body: body)
+Post.last.author.update_attributes(first_name: 'Adam', second_name: 'Markowski')
 
 puts 'Done!'

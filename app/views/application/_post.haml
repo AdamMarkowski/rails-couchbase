@@ -13,4 +13,4 @@
     .inline.pull-right
       = visits_count(post)
 
-  = post.body.html_safe
+  = post.body.gsub("\n", '<br />').html_safe
