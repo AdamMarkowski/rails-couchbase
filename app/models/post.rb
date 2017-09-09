@@ -14,7 +14,7 @@ class Post < ApplicationRecord
 
   def pretty_author
     Cache.fetch("post:#{id}:pretty_author") do
-      "#{author.first_name} #{author.second_name}"
+      "#{author.first_name} #{author.last_name}"
     end
   end
 

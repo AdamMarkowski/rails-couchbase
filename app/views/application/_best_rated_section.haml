@@ -1,6 +1,6 @@
 .card
   .card-body
-    %h5.card-title Najlepiej oceniane posty
+    %h5.card-title Najlepiej oceniane wpisy
     %ul
       - Post.best_rated.each do |post|
         %li= link_to post, post

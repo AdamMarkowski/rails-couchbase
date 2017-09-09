@@ -31,7 +31,7 @@ titles = [
     puts "#{i+1}/15"
     author = Author.create(
       first_name: Faker::Name.first_name,
-      second_name: Faker::Name.last_name
+      last_name: Faker::Name.last_name
     )
     post = Post.create(
       title: titles.shift,
@@ -85,6 +85,6 @@ body = %{
 }
 
 Post.last.update_attributes(title: title, body: body)
-Post.last.author.update_attributes(first_name: 'Adam', second_name: 'Markowski')
+Post.last.author.update_attributes(first_name: 'Adam', last_name: 'Markowski')
 
 puts 'Done!'
