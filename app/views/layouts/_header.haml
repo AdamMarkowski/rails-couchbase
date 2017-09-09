@@ -2,9 +2,9 @@
   .container
     %nav
       = link_to 'Strona główna', root_url,
-        class: "nav-link #{params[:controller] != 'static' ? 'active' : ''}"
-      = link_to 'O nas', static_path(page: 'about'),
-        class: "nav-link #{params[:controller] == 'static' ? 'active' : ''}"
+        class: "nav-link #{params[:controller] != 'page' ? 'active' : ''}"
+      = link_to 'O nas', page_path(page: 'about'),
+        class: "nav-link #{params[:controller] == 'page' ? 'active' : ''}"
 
 .blog-header
   .container

@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     get :add_comment, on: :member
   end
 
-  get '/static/:page', to: 'static#page', as: :static
+  get '/page/:page', to: 'page#show', as: :page
 end

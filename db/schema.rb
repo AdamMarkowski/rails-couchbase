@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 20170906201640) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.string "page"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.bigint "author_id"
     t.string "title"
@@ -46,13 +53,6 @@ ActiveRecord::Schema.define(version: 20170906201640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_rates_on_post_id"
-  end
-
-  create_table "static_pages", force: :cascade do |t|
-    t.string "page"
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "visits", force: :cascade do |t|

@@ -4,16 +4,16 @@ class Cache
   class << self
 
     def fetch(key, params = {})
-      # raise "block hasn't been provided" unless block_given?
-      # obj = get(key)
-      #
-      # if obj.nil?
-      #   puts "--- key not found: #{key}"
-      #   obj = yield
-      #   set(key, obj, params)
-      # end
-      #
-      # obj
+      raise "block hasn't been provided" unless block_given?
+      obj = get(key)
+
+      if obj.nil?
+        puts "--- key not found: #{key}"
+        obj = yield
+        set(key, obj, params)
+      end
+
+      obj
 
       yield
     end

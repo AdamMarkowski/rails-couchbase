@@ -1,12 +1,12 @@
-puts 'Deleting'
+puts 'Deleting records'
 Visit.delete_all
 Rate.delete_all
 Comment.delete_all
 Post.delete_all
 Author.delete_all
-StaticPage.delete_all
+Page.delete_all
 
-puts 'Creating'
+puts 'Creating fake records'
 
 titles = [
   "Wykorzystanie Couchbase'a w aplikacja internetowych",
@@ -73,7 +73,7 @@ Paulina Wójcik (publicystka)
 Agnieszka Mamak (publicystka)
 }
 
-StaticPage.create!(
+Page.create!(
   page: 'about',
   content: content
 )
