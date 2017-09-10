@@ -16,6 +16,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'libcouchbase'
+gem 'activeadmin'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

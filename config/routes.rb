@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root 'posts#index'
 
   resources :posts, only: %i[index show] do
